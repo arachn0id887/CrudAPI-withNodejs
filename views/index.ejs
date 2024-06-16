@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArticleSwift</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="shortcut icon" href="/article-icon.svg" type="image/svg" />
+    <script
+      src="https://kit.fontawesome.com/7f027a8137.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>ArticleSwift</h1>
+      <nav class="sidebar">
+        <ul>
+          <li onclick="hideSidebar()"><i class="fa-solid fa-xmark"></i></li>
+          <li><a href="/">Home</a></li>
+          <li>
+            <a href="/article/create">Create new Article</a>
+          </li>
+          <li><a href="/article">All Articles</a></li>
+          <li>
+            <button class="logoutbtn" onclick="logout()" type="submit">
+              <a href="/login">Log Out</a>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <nav class="navbar">
+        <ul>
+          <li class="navresp"><a href="/">Home</a></li>
+          <li class="navresp">
+            <a href="/article/create">Create new Article</a>
+          </li>
+          <li class="navresp"><a href="/article">All Articles</a></li>
+          <li class="navresp">
+            <button class="logoutbtn" onclick="logout()" type="submit">
+              <a href="/login">Log Out</a>
+            </button>
+          </li>
+          <li onclick="showSidebar()"><i class="fa-solid fa-bars"></i></li>
+        </ul>
+      </nav>
+    </header>
+
+    <article class="index-art">
+      <h2>About Us</h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex unde quidem
+        nam vel modi fuga perspiciatis eveniet aut, quos, tempore non eius sed
+        consequuntur debitis quaerat quod repellat excepturi libero eos esse hic
+        at maxime corporis beatae. Reiciendis nesciunt quaerat deleniti a
+        officia totam soluta error et asperiores! Autem porro aperiam
+        reprehenderit facere et, sed, minus illo ullam adipisci dolores quidem
+        impedit unde commodi qui fugiat laudantium veritatis id cupiditate
+        accusamus alias, maxime temporibus aliquam. Consequuntur, fugiat quidem.
+        Mollitia nihil dolorum magni maxime culpa, ratione omnis quia suscipit
+        debitis! Quo, odio quam minus nemo facilis illum odit sunt neque sint.
+      </p>
+    </article>
+    <div class="routing">
+      <h1>Use the following routes:</h1>
+      <p>/article/:id -> Fetch an article by its id.</p>
+      <p>/article/:id/update -> Update an article by its id.</p>
+      <p>/article/:id/delete -> Delete an article by its id.</p>
+    </div>
+    <footer>
+      <p>&copy; ArticleSwift 2024</p>
+      <p>Instagram | Twitter | Discord</p>
+    </footer>
+    <script>
+      function logout() {
+        fetch("/logout", {
+          method: "POST",
+          body: JSON.stringify({ logout: true }),
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+      function showSidebar() {
+        document.querySelector(".sidebar").style.display = "flex";
+      }
+      function hideSidebar() {
+        document.querySelector(".sidebar").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

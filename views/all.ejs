@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Articles | ArticleSwift</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="shortcut icon" href="/article-icon.svg" type="image/svg" />
+    <script
+      src="https://kit.fontawesome.com/7f027a8137.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>ArticleSwift</h1>
+      <nav class="sidebar">
+        <ul>
+          <li onclick="hideSidebar()"><i class="fa-solid fa-xmark"></i></li>
+          <li><a href="/">Home</a></li>
+          <li>
+            <a href="/article/create">Create new Article</a>
+          </li>
+          <li><a href="/article">All Articles</a></li>
+          <li>
+            <button class="logoutbtn" onclick="logout()" type="submit">
+              <a href="/login">Log Out</a>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <nav class="navbar">
+        <ul>
+          <li class="navresp"><a href="/">Home</a></li>
+          <li class="navresp">
+            <a href="/article/create">Create new Article</a>
+          </li>
+          <li class="navresp"><a href="/article">All Articles</a></li>
+          <li class="navresp">
+            <button class="logoutbtn" onclick="logout()" type="submit">
+              <a href="/login">Log Out</a>
+            </button>
+          </li>
+          <li onclick="showSidebar()"><i class="fa-solid fa-bars"></i></li>
+        </ul>
+      </nav>
+    </header>
+    <h1 class="title">ALL ARTICLES</h1>
+    <% articles.forEach(article => { %>
+    <div class="box">
+      <p>Name: <%= article.name %></p>
+      <p>Info: <%= article.info %></p>
+      <p>Posted By: <%= article.posted_by %></p>
+      <p>Created at: <%= article.createdAt.toLocaleString() %></p>
+      <p>Last updated at: <%= article.updatedAt.toLocaleString() %></p>
+      <p>Id: <%= article.id %></p>
+      <button class="submit">
+        <a href="/article/<%= article.id %>/update">Update</a>
+      </button>
+      <button class="submit">
+        <a href="/article/<%= article.id %>/delete">Delete</a>
+      </button>
+    </div>
+    <% }) %>
+    <footer>
+      <p>&copy; ArticleSwift 2024</p>
+      <p>Instagram | Twitter | Discord</p>
+    </footer>
+    <script>
+      function logout() {
+        fetch("/logout", {
+          method: "POST",
+          body: JSON.stringify({ logout: true }),
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+      function showSidebar() {
+        document.querySelector(".sidebar").style.display = "flex";
+      }
+      function hideSidebar() {
+        document.querySelector(".sidebar").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

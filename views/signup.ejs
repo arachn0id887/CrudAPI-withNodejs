@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | ArticleSwift</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="shortcut icon" href="/article-icon.svg" type="image/svg" />
+  </head>
+  <body>
+    <h1 class="title">SIGNUP FORM</h1>
+    <form action="/signup" method="post" class="form" id="authform">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        value="<%= user.username %>"
+        required
+      />
+      <br />
+      <br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        value="<%= user.password %>"
+        required
+      />
+      <br />
+      <br />
+      <button type="submit" class="submit">Sign Up</button>
+      <p class="authmsg">Already have an account? <a href="/login">Login</a></p>
+    </form>
+    <footer>
+      <p>&copy; ArticleSwift 2024</p>
+      <p>Instagram | Twitter | Discord</p>
+    </footer>
+  </body>
+</html>

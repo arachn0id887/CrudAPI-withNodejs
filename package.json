@@ -1,0 +1,42 @@
+{
+  "name": "t3-fresh",
+  "version": "1.0.0",
+  "description": "Elite-r3-t3",
+  "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index.js",
+    "dev": "nodemon --env-file=.env index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arachn0id887/Elite-R3-Task3.git"
+  },
+  "author": "vj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arachn0id887/Elite-R3-Task3/issues"
+  },
+  "homepage": "https://github.com/arachn0id887/Elite-R3-Task3#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}

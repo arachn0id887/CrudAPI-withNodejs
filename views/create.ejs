@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create article | ArticleSwift</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="shortcut icon" href="/article-icon.svg" type="image/svg" />
+    <script
+      src="https://kit.fontawesome.com/7f027a8137.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>ArticleSwift</h1>
+      <nav class="sidebar">
+        <ul>
+          <li onclick="hideSidebar()"><i class="fa-solid fa-xmark"></i></li>
+          <li><a href="/">Home</a></li>
+          <li>
+            <a href="/article/create">Create new Article</a>
+          </li>
+          <li><a href="/article">All Articles</a></li>
+          <li>
+            <button class="logoutbtn" onclick="logout()" type="submit">
+              <a href="/login">Log Out</a>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <nav class="navbar">
+        <ul>
+          <li class="navresp"><a href="/">Home</a></li>
+          <li class="navresp">
+            <a href="/article/create">Create new Article</a>
+          </li>
+          <li class="navresp"><a href="/article">All Articles</a></li>
+          <li class="navresp">
+            <button class="logoutbtn" onclick="logout()" type="submit">
+              <a href="/login">Log Out</a>
+            </button>
+          </li>
+          <li onclick="showSidebar()"><i class="fa-solid fa-bars"></i></li>
+        </ul>
+      </nav>
+    </header>
+    <h1 class="title">Create new article</h1>
+    <form action="/article/create" method="post" class="form">
+      <label for="name">Name of article:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="<%= article.name %>"
+        placeholder="Xyz"
+        required
+      />
+      <br />
+      <br />
+      <label for="info">Article information:</label>
+      <textarea
+        type="text"
+        id="info"
+        name="info"
+        required
+        placeholder="Info..."
+        value="<%= article.info %>"
+        rows="4"
+        cols="50"
+      >
+      </textarea>
+      <br />
+      <br />
+      <label for="posted_by">Posted by:</label>
+      <input
+        type="text"
+        value="<%= article.posted_by %>"
+        id="posted_by"
+        name="posted_by"
+        placeholder="John Doe"
+        required
+      />
+      <br />
+      <br />
+      <button type="submit" class="submit">Create</button>
+    </form>
+    <footer>
+      <p>&copy; ArticleSwift 2024</p>
+      <p>Instagram | Twitter | Discord</p>
+    </footer>
+    <script>
+      function logout() {
+        fetch("/logout", {
+          method: "POST",
+          body: JSON.stringify({ logout: true }),
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+      function showSidebar() {
+        document.querySelector(".sidebar").style.display = "flex";
+      }
+      function hideSidebar() {
+        document.querySelector(".sidebar").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
