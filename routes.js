@@ -60,7 +60,11 @@ router.post("/logout", (req, res) => {
 router.get("/article", async (req, res) => {
   try {
     const articles = await Article.find().sort({ createdAt: "desc" });
-    res.render("all", { articles: articles });
+    if (loggedIn) {
+      res.render("all", { articles: articles });
+    } else {
+      res.redirect("/signup");
+    }
   } catch (error) {
     res.status(500).send(error);
     console.log(error);
@@ -69,7 +73,11 @@ router.get("/article", async (req, res) => {
 
 //CREATE
 router.get("/article/create", (req, res) => {
-  res.render("create", { article: new Article() });
+  if (loggedIn) {
+    res.render("create", { article: new Article() });
+  } else {
+    res.redirect("/signup");
+  }
 });
 
 router.post("/article/create", async (req, res) => {
@@ -95,8 +103,11 @@ router.get("/article/:id", async (req, res) => {
     const article = await Article.findById(articleId);
     if (!article) {
       res.send("Article does not exist.");
+    } else if (loggedIn) {
+      res.render("byID", { article: article });
+    } else {
+      res.redirect("/signup");
     }
-    res.render("byID", { article: article });
   } catch (error) {
     res.status(500).send(error);
     console.log(error);
@@ -110,8 +121,11 @@ router.get("/article/:id/update", async (req, res) => {
   const article = await Article.findById(articleId);
   if (!article) {
     res.send("Article does not exist.");
+  } else if (loggedIn) {
+    res.render("update", { article: article });
+  } else {
+    res.redirect("/signup");
   }
-  res.render("update", { article: article });
 });
 
 router.put("/article/:id/update", async (req, res) => {
@@ -140,8 +154,11 @@ router.get("/article/:id/delete", async (req, res) => {
   const article = await Article.findById(articleId);
   if (!article) {
     res.status(404).send("Article does not exist.");
+  } else if (loggedIn) {
+    res.render("delete", { article: article });
+  } else {
+    res.redirect("/signup");
   }
-  res.render("delete", { article: article });
 });
 
 router.delete("/article/:id/delete", async (req, res) => {
